@@ -106,7 +106,26 @@ void loop() {
 
 //  runDefaultProgram();
 
-  scanRange();
+  unsigned int rangeValuesArray[180];
+
+  scanForRange(rangeValuesArray);
+
+  for(int degreesIndex = 0; degreesIndex <= 180; degreesIndex++) {
+    Serial.print(degreesIndex, DEC);
+    Serial.print(" => ");
+    unsigned int shortenedRange = rangeValuesArray[degreesIndex] / 70;
+    for(int splatIndex = 0; splatIndex <= 10; splatIndex++) {
+      
+      if(shortenedRange >= splatIndex) {
+        Serial.print("*");
+      } else {
+        Serial.print(" ");
+      }
+    }
+    Serial.println("|");
+  }
+  
+  delay(30000);
 
 }
 
@@ -130,7 +149,20 @@ void runDefaultProgram() {
  * Parameters:
  * unsigned int *rangeValuesArray -- pointer to an unsigned integer array of size 180
  */
-void scanForRange(int *rangeValuesArray) {
+void scanForRange(unsigned int *rangeValuesArray) {
+
+  for(neckServoPosition = 0; neckServoPosition < 180; neckServoPosition += 1)  
+  {                         
+    neckServo.write(neckServoPosition);
+    delay(15);
+
+    unsigned int currentRange = analogRead(rangefinderAnalogPin);
+    rangeValuesArray[neckServoPosition] = currentRange;
+  } 
+  
+  neckServoPosition = 90;
+  neckServo.write(neckServoPosition);
+  
 }
 
 
