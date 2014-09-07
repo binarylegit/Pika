@@ -1,0 +1,11 @@
+3 - buzzer
+7- right motor direction control line
+8 - left motor direction control line
+9 - right motor PWM control line
+10 - left motor PWM control line
+12 - User pushbutton
+13 - yellow user LED
+
+A1 - battery level voltage divider
+A4 - I2C SDA on Uno
+A5 - I2C SCL on Uno
