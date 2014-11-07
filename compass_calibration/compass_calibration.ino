@@ -30,7 +30,6 @@ int batteryLevelVoltageDividerAnalogPin = 1; // analog pin 1
 
 // Compass, and Accelerometer
 LSM303 compass;
-char compassReport[80]; // for debugging
 
 // Servo
 Servo neckServo;
@@ -43,6 +42,8 @@ int REVERSE = HIGH;
 // Serial debugging:
 int baudrate = 9600;
 
+int compassReadings = 0;
+char compassReport[80];
 
 void setup() {
 
@@ -57,6 +58,9 @@ void setup() {
   setupCompass();
 
   analogReference(DEFAULT);
+
+  // delay 10 seconds to allow serial monitor to open
+  delay(10000);
 
 }
 
@@ -73,7 +77,6 @@ void setupBuzzer() {
 void setupServo() {
   neckServo.attach(servoPositionPWMPin);
   neckServo.write(90);
-  neckServo.detach();
 }
 
 void setupSerial() {
@@ -88,58 +91,52 @@ void setupMotors() {
   pinMode(rightSpeedPWMPin, OUTPUT);
   pinMode(leftSpeedPWMPin, OUTPUT);
 
-  // initialize to forward stopped
-  digitalWrite(rightDirectionPin, FORWARD);
-  digitalWrite(leftDirectionPin, FORWARD);
-  analogWrite(rightSpeedPWMPin, 0);
-  analogWrite(leftSpeedPWMPin, 0);
+  // OPERATING ENVIRONMENTS -- only activate one -----------------------------------------------------------------
 
-}
+  // Right motor forward 50, Left motor reverse 50
+//  digitalWrite(rightDirectionPin, FORWARD);
+//  digitalWrite(leftDirectionPin, REVERSE);
+//  analogWrite(rightSpeedPWMPin, 50);
+//  analogWrite(leftSpeedPWMPin, 50);
 
-int northHeadingXMax = 330;
-int northHeadingXMin = 260;
+  // Right motor reverse 50, Left motor forward 50
+//    digitalWrite(rightDirectionPin, REVERSE);
+//    digitalWrite(leftDirectionPin, FORWARD);
+//    analogWrite(rightSpeedPWMPin, 50);
+//    analogWrite(leftSpeedPWMPin, 50);
 
-int northHeadingYMax = 700;
-int northHeadingYMin = 770;
+  // Right motor forward 100, Left motor forward 100
+//    digitalWrite(rightDirectionPin, FORWARD);
+//    digitalWrite(leftDirectionPin, FORWARD);
+//    analogWrite(rightSpeedPWMPin, 100);
+//    analogWrite(leftSpeedPWMPin, 100);
 
-boolean isBeeped = false;
+  // Right motor reverse 100, Left motor reverse 100
+//    digitalWrite(rightDirectionPin, REVERSE);
+//    digitalWrite(leftDirectionPin, REVERSE);
+//    analogWrite(rightSpeedPWMPin, 100);
+//    analogWrite(leftSpeedPWMPin, 100);
 
-// LOOP ////////////////////////////////////////////////////////////////////////////////////////////////////
-void loop() {
-  // read compass
-  compass.read();  
-  int headingX = compass.m.x;
-  int headingY = compass.m.y;
-
-  if((headingX < northHeadingXMin || headingX > northHeadingXMax) 
-    && (headingY < northHeadingYMin || headingY > northHeadingYMax)) {
-    // turn motors
-    digitalWrite(rightDirectionPin, FORWARD);
-    digitalWrite(leftDirectionPin, REVERSE);
-    analogWrite(rightSpeedPWMPin, 50);
-    analogWrite(leftSpeedPWMPin, 50);
-    isBeeped = false;
-  } 
-  else {
-    // beep twice
+  // Right motor forward 0, Left motor forward 0
     digitalWrite(rightDirectionPin, FORWARD);
     digitalWrite(leftDirectionPin, FORWARD);
     analogWrite(rightSpeedPWMPin, 0);
     analogWrite(leftSpeedPWMPin, 0);
+}
 
-    if(!isBeeped) {
-      beepBuzzer();
-      beepBuzzer();
-      isBeeped = true;
-    }
+// LOOP ////////////////////////////////////////////////////////////////////////////////////////////////////
+void loop() {
+  if(compassReadings <= 200){
+    compass.read();
+    snprintf(compassReport, sizeof(compassReport), "%6d,%6d,%6d", compassReadings, compass.m.x, compass.m.y);
+    Serial.println(compassReport);
+    compassReadings++;
   }
+  delay(250);
 }
 
-void beepBuzzer() { 
-  tone(buzzerDigitalPin, 300);
-  delay(250);
-  noTone(buzzerDigitalPin);
-  delay(250);
-}
+
+
+
 
 
