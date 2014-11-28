@@ -102,7 +102,7 @@ void setupMotors() {
 
 // LOOP ////////////////////////////////////////////////////////////////////////////////////////////////////
 void loop() {
-  if(compassReadings <= 5/*000*/ && !isCalibrationCompleted){
+  if(compassReadings <= 5000 && !isCalibrationCompleted){
     compass.read();
     snprintf(compassReport, sizeof(compassReport), "%6d,%6d,%6d", compassReadings, compass.m.x, compass.m.y);
     Serial.println(compassReport);
