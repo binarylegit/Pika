@@ -1,3 +1,4 @@
+0,1,2 - RGB LED
 3 - buzzer
 5 - right motor PWM control line (in place of pin 9)
 6 - left motor PWM control line (in place of pin 10)
@@ -17,5 +18,5 @@ A5 - I2C SCL on Uno
 
 
 Free:
-0,1,2,4
+4
 A0,A2
