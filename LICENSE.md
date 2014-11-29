@@ -1,10 +1,6 @@
 Pika
-====
+-----------
 
-Pika is an indoor robotic rover built from the Pololu Zumo kit.
-
-Licensing
--------------
 ### All Software and Software Source Code is provided under MIT License:
 
 Copyright (c) 2014 Daniel Fowler
