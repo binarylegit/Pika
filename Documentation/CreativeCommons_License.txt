@@ -1,10 +1,10 @@
 All documentation in the Pika project is provided under the following license:
 
-Pika by Daniel Fowler is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+Pika Documentation by Daniel Fowler is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 Based on a work at https://github.com/binarylegit/Pika.
 
 Html for use in web documents:
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Pika</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/binarylegit/Pika" property="cc:attributionName" rel="cc:attributionURL">Daniel Fowler</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/binarylegit/Pika" rel="dct:source">https://github.com/binarylegit/Pika</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">Pika Documentation</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/binarylegit/Pika" property="cc:attributionName" rel="cc:attributionURL">Daniel Fowler</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/binarylegit/Pika" rel="dct:source">https://github.com/binarylegit/Pika</a>.
 
 The documentation is provided without any warranty, express or implied.  The author is not responsible for any liability in connection with the documentation.
