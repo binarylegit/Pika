@@ -43,16 +43,22 @@ int REVERSE = HIGH;
 // Serial debugging:
 int baudrate = 9600;
 
+// Digital Pins for driving RGB LED
+int blueRgbLEDPin = 0;
+int greenRgbLEDPin = 1;
+int redRgbLEDPin = 2;
 
 void setup() {
   
 //  setupMotors();
   
-  setupSerial();
+//  setupSerial();
   
 //  setupServo();
 
 //  setupBuzzer();
+
+  setupRgbLED();
 
   setupCompass();
 
@@ -94,16 +100,24 @@ void setupMotors() {
   
 }
 
+void setupRgbLED() {
+  pinMode(redRgbLEDPin, OUTPUT);
+  pinMode(greenRgbLEDPin, OUTPUT);
+  pinMode(blueRgbLEDPin, OUTPUT);
+}
+
 // LOOP ////////////////////////////////////////////////////////////////////////////////////////////////////
 void loop() {
   
-  serialDebug();
+//  serialDebug();
   
 //  testRangeFinderStop();
 
 //  testServo();
 
 // testBuzzer();
+
+ testRgbLED();
 
 }
 
@@ -182,4 +196,27 @@ void testBuzzer() {
   delay(500);
   noTone(buzzerDigitalPin);
   delay(500);
+}
+
+void testRgbLED() {
+  delay(1000);
+  showColor(HIGH,LOW,HIGH);
+  delay(1000);
+  showColor(HIGH,HIGH,LOW);
+  delay(1000);
+  showColor(LOW, HIGH, HIGH);
+  delay(1000);
+  showColor(HIGH, HIGH, HIGH);
+  delay(1000);
+  showColor(HIGH, LOW, LOW);
+  delay(1000);
+  showColor(HIGH, HIGH, HIGH);
+  delay(1000);
+}
+
+void showColor(boolean red, boolean green, boolean blue) {
+  digitalWrite(redRgbLEDPin, red);
+  digitalWrite(greenRgbLEDPin, green);
+  digitalWrite(blueRgbLEDPin, blue);
+  
 }
