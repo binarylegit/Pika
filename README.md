@@ -1,7 +1,7 @@
 Pika
 ====
 
-Pika is an indoor robotic rover built from the Pololu Zumo kit.
+Pika is an indoor robotic rover built from the Pololu Zumo kit.  Pika is named for the small furry rodent found high in the Colorado Rockies and is pronounced pie-kuh.
 
 Licensing
 -------------
