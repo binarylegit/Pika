@@ -31,7 +31,8 @@ public:
   MovingAverage(int);
   ~MovingAverage();
   float add_value(float);
-  float get_value();  
+  float get_value();
+  bool is_window_full(); 
 };
 
 #endif
@@ -66,4 +67,6 @@ inline float MovingAverage::get_value() {
   return _currentAverage;
 }
 
-
+inline bool MovingAverage::is_window_full() {
+  return _denominator == _windowSize;
+}
