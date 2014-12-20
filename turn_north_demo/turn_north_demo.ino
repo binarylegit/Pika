@@ -51,6 +51,11 @@ int REVERSE = HIGH;
 // Serial debugging:
 int baudrate = 9600;
 
+// Digital Pins for driving RGB LED
+int blueRgbLEDPin = 0;
+int greenRgbLEDPin = 1;
+int redRgbLEDPin = 2;
+
 
 void setup() {
   
@@ -63,6 +68,8 @@ void setup() {
   setupBuzzer();
 
   setupCompass();
+  
+//  setupRgbLED();
 
   analogReference(DEFAULT);
 
@@ -102,6 +109,12 @@ void setupMotors() {
   analogWrite(rightSpeedPWMPin, 0);
   analogWrite(leftSpeedPWMPin, 0);
 
+}
+
+void setupRgbLED() {
+  pinMode(redRgbLEDPin, OUTPUT);
+  pinMode(greenRgbLEDPin, OUTPUT);
+  pinMode(blueRgbLEDPin, OUTPUT);
 }
 
 int northHeadingXMax = 330;
@@ -150,4 +163,10 @@ void beepBuzzer() {
   delay(250);
 }
 
+void showColor(boolean red, boolean green, boolean blue) {
+  digitalWrite(redRgbLEDPin, red);
+  digitalWrite(greenRgbLEDPin, green);
+  digitalWrite(blueRgbLEDPin, blue);
+  
+}
 
